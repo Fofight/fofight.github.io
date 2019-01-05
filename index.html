@@ -1,69 +1,45 @@
-
-<html>
-
-<head>
-    <meta charset="UTF-8" />
-    <title>Learnbgame</title>
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="dist/tagcloud.min.css" />
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: #023b3b url("bg.png");        
-        }
-
-        #light {
-            background: #666;
-            color: #fff
-        }
-
-        .box {
-            position: fixed;
-            top: 25%;
-            left: 30%;
-            width: 400px;
-            height: 400px;
-            margin-top: -300px;
-            margin-left: -200px
-        }
-
-        .box.box1 {
-            left: auto;
-            right: 15%;
-            margin-left: 0
-        }
-
-        .box2 {
-            position: fixed;
-            top: 50%;
-            left: 15%;
-            width: 400px;
-            height: 400px;
-            margin-top: -300px
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="content">
-        <div class="box">
-            <div class="tagcloud">
-                <a href="https://www.blend4web.com/apps/webplayer/webplayer.html?load=../../assets/mi_34_hermit/mi_34s1_demo_scene.json&autorotate&compressed_textures&compressed_textures_pvr&v=0c4fbfab10a328fb85d4ed7c9698cf5d">直升机</a>
-                <a href="https://www.blend4web.com/apps/webplayer/webplayer.html?load=../../assets/azure_grotto/azure_grotto.json&autorotate&compressed_textures&compressed_textures_pvr&v=0c4fbfab10a328fb85d4ed7c9698cf5d">蔚蓝的石窟</a>
-                <a href="https://www.blend4web.com/apps/webplayer/webplayer.html?load=../../assets/watch_scene/watch_scene.json&autorotate&compressed_textures&compressed_textures_pvr&v=0c4fbfab10a328fb85d4ed7c9698cf5d">手表</a>
-                <a href="https://www.blend4web.com/apps/webplayer/webplayer.html?load=../../assets/lighting/multiple_lights.json&compressed_textures&compressed_textures_pvr&v=0c4fbfab10a328fb85d4ed7c9698cf5d">雪夜</a>
-                <a href="https://www.blend4web.com/apps/webplayer/webplayer.html?load=../../assets/fountain_elephants/fountain_elephants.json&autorotate&compressed_textures&compressed_textures_pvr&v=0c4fbfab10a328fb85d4ed7c9698cf5d">喷泉</a>
-                <a href="https://www.blender.org/">blender</a>
-                <a href="http://www.blendercn.org/">blendercn</a>
-            </div>                    
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="shortcut icon" href="favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />       <!--页面放大代码-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />                     <!--兼容处理-->
+        <title>Learnbgame</title>
+        <link rel="stylesheet" href="css/index.css" />
+    </head>
+    <body>
+        <div id="bg-wrap">
+            <!--主体-->
+            <div id="wrap">
+                <!--li 模块-->
+                <div id="box">
+                    <ul></ul>
+                </div>
+                <!--tab 点击模块-->
+                <div id="tab">
+                    <ul>
+                        <li>Table</li>
+                        <li>Sphere</li>
+                        <li>Helix</li>
+                        <li>Grid</li>
+                    </ul>
+                </div>
+                <!--alert 弹出层模块-->
+                <div id="alert">
+                    <div class="title"><span>3D特效轮换布局</span></div>
+                    <div class="img"><img src="" alt=""></div>
+                    <div class="info"><span>描述: 这大概是最屌的案例了……</span></div>
+                    <div class="author"><span>制作: By Web.Js</span></div>
+                </div>
+                <!--Back! 按钮-->
+                <div id="back">Back!</div>
+            </div>
+            <!--iFrame 框架模块-->
+            <iframe src="" scrolling="no" id="iFrame"></iframe>
         </div>
-    </div>
-    <script src="dist/tagcloud.min.js"></script>
-    <script>
-    var tc = tagcloud();
-    </script>
 
-</body>
-
+        <script src="js/data.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
 </html>

@@ -1,0 +1,297 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body,
+html
+{
+    font-size: 16px;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+
+    color: white;
+}
+a
+{
+    text-decoration: none;
+
+    color: #000;
+}
+ul li
+{
+    list-style: none;
+}
+.fl
+{
+    float: left;
+}
+.fr
+{
+    float: right;
+}
+.clearFixed:after
+{
+    display: block;
+    clear: both;
+
+    content: '';
+}
+#bg-wrap
+{
+    width: 400%;
+    height: 100%;
+    margin-left: 0;
+
+    transition: 1s;
+}
+#bg-wrap.left
+{
+    margin-left: -100%;
+}
+#wrap
+{
+    position: relative;
+
+    float: left;
+
+    width: 25%;
+    min-width: 600px;
+    height: 100%;
+
+    background: #023b3b url('../img/bg.png') center;
+
+    perspective: 800px;
+}
+#box ul
+{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+
+    width: 120px;
+    height: 160px;
+    margin-top: -80px;
+    margin-left: 1260px;
+
+    transform: translateZ(-2000px) rotateX(0deg) rotateY(0deg);
+
+    transform-style: preserve-3d;
+}
+#box ul li
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 365%;
+    height: 100%;
+
+    transition: 3s cubic-bezier(.94,.02,.49,.98);
+
+    border: 1px solid rgba(127,255,255,.25);
+    background: rgba(0,127,127,.5);
+    box-shadow: 0 0 12px rgba(0,255,255,.5);
+}
+#box ul li .liTitle
+{
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 35px;
+
+    height: 35px;
+    margin: 40px auto 20px;
+
+    text-align: center;
+}
+#box ul li .liAuthor,
+#box ul li .liTime
+{
+    font-family: 'Times New Roman', serif;
+    font-size: 20px;
+
+    margin: 15px auto 0;
+
+    text-align: center;
+}
+#box ul li .liTime
+{
+    margin: 8px auto 0;
+}
+
+
+
+#tab
+{
+    position: absolute;
+    bottom: 20px;
+    left: 840px;
+
+    overflow: hidden;
+    
+    width: 280px;
+}
+#tab ul
+{
+    width: inherit;
+    height: inherit;
+    text-align: center;
+}
+#tab ul li
+{
+    line-height: 30px;
+
+    float: left;
+
+    height: 30px;
+    margin: 0 5px;
+    padding: 0 5px;
+
+    cursor: pointer;
+    text-align: center;
+
+    color: rgba(127,255,255,1);
+    border: 1px solid rgba(127,255,255,1);
+    border-radius: 3px;
+}
+#tab ul li:hover
+{
+    background: rgba(127,255,255,.4);
+}
+#alert
+{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+
+    display: none;
+
+    width: 80%;
+    height: 80%;
+
+    transform: rotateY(0deg) scale(2);
+
+    opacity: 1;
+    border: 1px solid rgba(127,255,255,.25);
+    background: rgba(0,127,127,.5);
+    box-shadow: 0 0 12px rgba(0,255,255,.5);
+
+    transform-style: preserve-3d;
+    /** 注意：
+     *    1、边距的参照物是宽度 写边距百分比时 --> 参照的是水平宽度
+     *
+     */
+}
+#alert .title,
+#alert .img,
+#alert .info,
+#alert .author
+{
+    border: 1px solid rgba(127, 255, 255, .25);
+    border-radius: 3px;
+    background: rgba(0, 0, 0, .3);
+    box-shadow: 0 0 12px rgba(0, 255, 255, .5);
+}
+#alert .title
+{
+    position: absolute;
+    top: 10%;
+    left: 25%;
+
+    width: 50%;
+    height: 15%;
+}
+#alert .title span,
+#alert .author span
+{
+    font-weight: bold;
+
+    position: absolute;
+    top: 50%;
+
+    width: 100%;
+
+    transform: translateY(-50%);
+    text-align: center;
+}
+#alert .title span
+{
+    font-size: 30px;
+}
+#alert .img
+{
+    position: absolute;
+    top: 35%;
+    left: 5%;
+
+    overflow: hidden;
+
+    width:  16.2%;
+    height: 50%;
+}
+#alert .img img
+{
+    width: 100%;
+    height: auto;
+}
+#alert .info
+{
+    position: absolute;
+    top: 35%;
+    right: 5%;
+
+    width: 35%;
+    height: 35%;
+}
+#alert .info span
+{
+    position: absolute;
+    top: 5%;
+
+    padding: 15px;
+}
+#alert .author
+{
+    position: absolute;
+    right: 5%;
+    bottom: 15%;
+
+    width: 35%;
+    height: 10%;
+}
+#alert .author span
+{
+    font-size: 20px;
+}
+#iFrame
+{
+    width: 25%;
+    height: 100%;
+
+    border: none;
+}
+#back
+{
+    line-height: 30px;
+
+    position: absolute;
+    right: -80px;
+    bottom: 20px;
+
+    width: 50px;
+    height: 30px;
+
+    cursor: pointer;
+    text-align: center;
+
+    color: rgba(127,255,255,1);
+    border: 1px solid rgba(127,255,255,1);
+    border-radius: 3px;
+}
+#back:hover
+{
+    background: rgba(0,127,127,.8);
+}
