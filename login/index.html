@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learnbgame</title>
+    <!--common CSS-->
+    <link rel="stylesheet" href="css/common/bootstrap.min.css">
+    <link rel="stylesheet" href="res/css/common/font-awesome.min.css">
+    <link rel="stylesheet" href="res/css/common/toaster.min.css">
+    <!--CSS-->
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            background: #fff url(img/backgroud.png) 50% 50% no-repeat;
+            background-size: cover;
+        }
+
+        .mb-login {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 430px;
+            height: 550px;
+            margin: -300px 0 0 -215px;
+            border: 1px solid #fff;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .logo {
+            width: 58px;
+            height: 50px;
+            margin: 30px auto 25px;
+            background: url(img/favicon.ico) 0 0 no-repeat;
+        }
+
+        .form-item {
+            position: relative;
+            margin: 0 10%;
+            padding-bottom: 30px;
+        }
+
+        .form-item input {
+            width: 100%;
+            height: 48px;
+            padding-left: 70px;
+            border: 1px solid #fff;
+            border-radius: 25px;
+            font-size: 18px;
+            color: #fff;
+            background-color: transparent;
+            outline: none;
+        }
+
+        .form-item button {
+            width: 100%;
+            height: 50px;
+            border: 0;
+            border-radius: 25px;
+            font-size: 18px;
+            color: #1f6f4a;
+            outline: none;
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        #username {
+            background: url(img/user.png) 13px 4px no-repeat;
+        }
+
+        #password {
+            background: url(img/password.png) 23px 11px no-repeat;
+        }
+
+        .reg-bar {
+            width: 360px;
+            margin: 20px auto 0;
+            font-size: 14px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .reg-bar a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .reg-bar a:hover {
+            text-decoration: none;
+            color: darkorange;
+        }
+
+        .reg-bar .reg {
+            float: left;
+        }
+
+        .reg-bar .forget {
+            float: right;
+        }
+
+        .mb-login ::-webkit-input-placeholder {
+            font-size: 18px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .mb-login :-moz-placeholder {
+            font-size: 18px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .mb-login ::-moz-placeholder {
+            font-size: 18px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .mb-login :-ms-input-placeholder {
+            font-size: 18px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        @media screen and (max-width: 500px) {
+            * {
+                box-sizing: border-box;
+            }
+
+            .mb-login {
+                position: static;
+                width: auto;
+                height: auto;
+                margin: 0 30px;
+                border: 0;
+                border-radius: 0;
+            }
+
+            .logo {
+                margin: 50px auto;
+            }
+
+            .form-item {
+                width: auto;
+            }
+
+            .form-item input, .form-item button, .reg-bar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body ng-app="medicineApp" ng-controller="loginCtrl">
+<toaster-container></toaster-container>
+<div class="container-fluid">
+    <div class="row">
+        <div class="mb-login">
+            <form>
+                <div class="logo"></div>
+                <div class="form-item">
+                    <input id="username" ng-model="login.name" title="用户名"
+                           placeholder="请输入用户名" type="text" autocomplete="off">
+                </div>
+                <div class="form-item">
+                    <input id="password" ng-model="login.pwd" title="密码" type="password" autocomplete="off"
+                           placeholder="请输入密码">
+                </div>
+                <div class="form-item">
+                    <button ng-click="checkLogin();">登 录</button>
+                </div>
+                <div class="reg-bar">
+                    <a class="reg"
+                       ng-click="initRegister()"
+                       data-toggle="modal"
+                       data-target="#register">立即注册</a>
+                    <a class="forget"
+                       ng-click="initForget()"
+                       data-toggle="modal"
+                       data-target="#forget">忘记密码</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="register"
+     tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="myModalLabel">注册</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':register.error.name}">
+                        <label class="col-sm-4 control-label" for="registerName">用户名：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="registerName" ng-model="register.name" title="用户名"
+                                   placeholder="请设置用户名">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="register.error.nameFormat">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-register-tip">* 用户名只允许输入3-18位字母和数字</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':register.error.pwd}">
+                        <label class="col-sm-4 control-label" for="registerPwd">设置密码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="registerPwd"
+                                   ng-model="register.pwd" title="密码"
+                                   type="password" placeholder="请设置密码">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':register.error.pwdRepeat}">
+                        <label class="col-sm-4 control-label" for="registerPwdRepeat">确认密码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="registerPwdRepeat"
+                                   ng-model="register.pwdRepeat" title="密码"
+                                   type="password" placeholder="请再次输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="register.error.correct">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-register-tip">* 两次输入密码不一致</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':register.error.email}">
+                        <label class="col-sm-4 control-label" for="registerEmail">设置邮箱：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="registerEmail"
+                                   ng-model="register.email" title="邮箱"
+                                   type="email" placeholder="请设置邮箱">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="register.error.emailFormat">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-register-tip">* 邮箱格式有误</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':register.error.phone}">
+                        <label class="col-sm-4 control-label" for="registerPhone">设置手机：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="registerPhone"
+                                   ng-model="register.phone" title="手机号"
+                                   placeholder="请设置手机号">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="register.error.phoneFormat">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-register-tip">* 请输入11位有效手机号</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':register.error.code}">
+                        <label class="col-sm-4 control-label" for="registerCode">验证码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="registerCode"
+                                   ng-model="register.code" title="验证码"
+                                   placeholder="请输入手机验证码">
+                            <button class="mb-span-inline btn btn-default"
+                                    ng-click="getCode($event)"
+                                    ng-disabled="codeBtn"
+                                    ng-bind="codeInfo"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="checkRegister()">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="forget"
+     tabindex="-1" role="dialog"
+     aria-labelledby="forgetModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="forgetModalLabel">找回密码</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':forget.error.phone}">
+                        <label class="col-sm-4 control-label" for="forgetPhone">手机号：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="forgetPhone"
+                                   ng-model="forget.phone" title="手机号"
+                                   placeholder="请输入注册手机号">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="forget.error.phoneFormat">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-forget-tip">* 请输入11位有效手机号</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':forget.error.pwd}">
+                        <label class="col-sm-4 control-label" for="forgetPwd">设置密码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="forgetPwd"
+                                   ng-model="forget.pwd" title="密码"
+                                   type="password" placeholder="请设置密码">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':forget.error.pwdRepeat}">
+                        <label class="col-sm-4 control-label" for="forgetPwdRepeat">确认密码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="forgetPwdRepeat"
+                                   ng-model="forget.pwdRepeat" title="密码"
+                                   type="password" placeholder="请再次输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="forget.error.correct">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-forget-tip">* 两次输入密码不一致</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':forget.error.code}">
+                        <label class="col-sm-4 control-label" for="forgetCode">验证码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="forgetCode"
+                                   ng-model="forget.code" title="验证码"
+                                   placeholder="请输入手机验证码">
+                            <button class="mb-span-inline btn btn-default"
+                                    ng-click="getForgetCode($event)"
+                                    ng-disabled="codeBtn"
+                                    ng-bind="codeInfo"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button ng-show="!forget.error.correct"
+                        type="button"
+                        class="btn btn-primary"
+                        ng-click="checkForget()">
+                    提交
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--common JS-->
+<script src="js/common/md5.js"></script>
+<script src="js/common/angular.min.js"></script>
+<script src="js/common/angular-cookies.min.js"></script>
+<script src="js/common/angular-route.min.js"></script>
+<script src="js/common/angular-animate.min.js"></script>
+<script src="js/common/toaster.min.js"></script>
+<script src="js/common/jquery.min.js"></script>
+<script src="js/common/bootstrap.min.js"></script>
+<!--config JS-->
+<script src="js/app.js"></script>
+<!--controllers-->
+<script src="js/controller/loginController.js"></script>
+<!--service-->
+<script src="js/service/loginService.js"></script>
+</body>
+</html>

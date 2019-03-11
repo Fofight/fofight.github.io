@@ -1,0 +1,11 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <tab name="Init" type="InitTab">
+    <block type="initSettings" id="I87Vj7(qzBt+UOyT]U.V" x="-310" y="-490">
+      <field name="LOAD_COMP_ASSETS">FALSE</field>
+      <field name="FULLSCREEN">FALSE</field>
+      <field name="BKG_TRANSPARENCY">TRUE</field>
+      <field name="PRESERVE_DRAW_BUF">FALSE</field>
+    </block>
+  </tab>
+  <tab name="Main" type="MainTab"></tab>
+</xml>
